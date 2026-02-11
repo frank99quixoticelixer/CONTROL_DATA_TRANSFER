@@ -89,7 +89,7 @@ try:
             y_data.append(y)
             z_data.append(z)
             # Update live plot every few samples
-            if counter % 5 == 0:
+            if counter % 25 == 0:
                 line_x.set_data(t_data, x_data)
                 line_y.set_data(t_data, y_data)
                 line_z.set_data(t_data, z_data)
@@ -106,12 +106,13 @@ try:
                 #ax3d.set_xlim(min(x_data), max(x_data))
                 #ax3d.set_ylim(min(y_data), max(y_data))
                 #ax3d.set_zlim(min(z_data), max(z_data))
+                plt.pause(0.001)
             counter += 1
             #if counter % 10 == 0:   # print at 10 Hz instead of 100 Hz
                 #print(f"x={x:.2f}, y={y:.2f}, z={z:.2f}, " f"φ={roll:.2f}, θ={pitch:.2f}, ψ={yaw:.2f}")
         else:
             print(f"Unexpected packet size: {len(data)} bytes")
-        plt.pause(0.001)
+        #plt.pause(0.001)
 
 except KeyboardInterrupt:
     print("\nStopping UDP receiver cleanly...")
@@ -146,6 +147,6 @@ except KeyboardInterrupt:
     ax3d_final.set_title("Final 3D Trajectory")
 
     plt.show(block = True)
-    sys.exit(0)
+    #sys.exit(0)
 
 
